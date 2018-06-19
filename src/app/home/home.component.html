@@ -84,8 +84,11 @@
             
               </div>
             </div>
+          <button type="button" class="btn btn-success" (click)="genInvoice()">Generate Invoice</button>
+
       </div>
     </div>
   </div>
 </div>
     
+<app-print-invoice [project]="projectData" *ngIf="genInFlag"></app-print-invoice>

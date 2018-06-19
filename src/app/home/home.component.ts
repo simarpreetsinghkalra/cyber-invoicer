@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
     hourRate: 0,
     amount: 0
   };
+  genInFlag = false;
   constructor() {
     this.projectData = [
       {
@@ -69,5 +70,8 @@ export class HomeComponent implements OnInit {
       hourRate: this.currentEdit.hourRate,
       amount: this.currentEdit.amount
     };
+  }
+  genInvoice(){
+    this.genInFlag = true;
   }
 }

@@ -1,0 +1,83 @@
+<div class="container" width="800px" id="invoice" >
+  <div class="row">
+    <div class="col-xs-12 heading">
+      INVOICE
+    </div>
+  </div>
+  <div class="row branding">
+    <div class="col-xs-6">
+      <div class="invoice-number-container">
+        <label for="invoice-number">Invoice #</label><input type="text" id="invoice-number" ng-model="invoice.invoice_number" />
+      </div>
+    </div>
+    <div class="col-xs-6 logo-container">
+      <img id="company_logo" alt="your image" width="300" src="http://cybertrontechnologies.com/images/logo1.png" />
+    </div>
+  </div>
+  <div class="row infos">
+    <div class="col-xs-6">
+      <div class="input-container"><input type="text" value="company of mike"/></div>
+      <div class="input-container"><input type="text" value="address of mike"/></div>
+      <div class="input-container"><input type="text" value="address of mike"/></div>
+      <div class="input-container"><input type="text" value="pin"/></div>
+      <div class="input-container"><input type="text" value="city, country"/></div>
+    </div>
+    <div class="col-xs-6 right">
+      <div class="input-container"><input type="text" value="Cybertron Technologies"/></div>
+      <div class="input-container"><input type="text" value="Phase 3B2"/></div>
+      <div class="input-container"><input type="text" value="Sector 60, Ajitgarh"/></div>
+      <div class="input-container"><input type="text" value="Pin"/></div>
+      <div class="input-container"><input type="text" value="Punjab, (INDIA)"/></div>
+    </div>
+  </div>
+  <div class="items-table">
+    <div class="row header">
+      <div class="col-xs-1">&nbsp;</div>
+      <div class="col-xs-5">Project</div>
+      <div class="col-xs-2">Hours</div>
+      <div class="col-xs-2">Rate/Hour</div>
+      <div class="col-xs-2 text-right">Amount</div>
+    </div>
+    <div class="row invoice-item" ng-animate="'slide-down'" *ngFor="let p of project">
+      <div class="col-xs-1 remove-item-container">
+      </div>
+      <div class="col-xs-5 input-container">
+        <!-- <input ng-model="item.description" placeholder="Description" value="{{p.name}}" /> -->
+        {{p.name}}
+      </div>
+      <div class="col-xs-2 input-container">
+        <!-- <input ng-model="item.qty" value="{{p.hours}}" size="4" ng-validate="integer" placeholder="Quantity" /> -->
+        {{p.hours}}
+      </div>
+      <div class="col-xs-2 input-container">
+        <!-- <input ng-model="item.cost" value="{{p.hourRate}}" ng-validate="number" size="6" placeholder="Cost" /> -->
+        ${{p.hourRate}}
+      </div>
+      <div class="col-xs-2 text-right input-container">
+        ${{p.amount}}
+        <!-- {{item.cost * item.qty | currency: currencySymbol}} -->
+      </div>
+    </div>
+    <div class="row invoice-item">
+      <div class="col-xs-12 add-item-container" ng-hide="printMode">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-10 text-right">Sub Total</div>
+      <div class="col-xs-2 text-right">${{totalAmount | number:'1.0-2'}}<!--{{invoiceSubTotal() | currency: currencySymbol}}--></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-10 text-right">Tax(%): {{taxPercent}}</div>
+      <div class="col-xs-2 text-right">${{(this.taxPercent/100.00) * (this.totalAmount) | number:'1.0-2'}}<!--{{calculateTax() | currency: currencySymbol}}--></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-10 text-right">Grand Total:</div>
+      <div class="col-xs-2 text-right">${{grandTotal | number:'1.0-2'}}<!--{{calculateGrandTotal() | currency: currencySymbol}}--></div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row actions">
+    <a href="#" class="btn btn-primary" ng-show="printMode" (click)="printInvo('invoice')">Print</a>
+  </div>
+</div>
